@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light text-dark d-flex flex-column min-vh-100">
+
+    <!-- Header -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid px-5">
+                <a class="navbar-brand" href="#">
+                    <img src="/img/uscHUBLogo.png" alt="Logo" class="rounded" style="height: 50px;">
+                </a>
+                <h1 class="navbar-text text-white">Shopping Cart</h1>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link text-primary" href="homepage.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link text-primary" href="itemBrowserpg.html">Browse</a></li>
+                        <li class="nav-item"><a class="nav-link text-primary" href="aboutUs.html">About Us</a></li>
+                        <li class="nav-item"><a class="nav-link active text-primary" href="#">Cart</a></li>
+                    </ul>
+                    <a href="login.html" class="btn btn-primary ms-3">Login</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container my-5">
+        <!-- Cart Items Section -->
+        <div id="cart-items" class="bg-white rounded shadow-sm p-4">
+            <!-- Cart items will be injected here -->
+        </div>
+
+        <!-- Cart Total -->
+        <div id="cart-total" class="mt-4 fs-4 fw-bold text-dark">
+            <!-- Total Price will be displayed here -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-auto">
+        <div class="container text-center">
+            <ul class="list-inline mb-2">
+                <li class="list-inline-item"><a href="homepage.html" class="text-primary">Home</a></li>
+                <li class="list-inline-item"><a href="itemBrowserpg.html" class="text-primary">Browse</a></li>
+                <li class="list-inline-item"><a href="aboutUs.html" class="text-primary">About Us</a></li>
+                <li class="list-inline-item"><a href="#" class="text-primary">Cart</a></li>
+            </ul>
+            <p class="mb-0">&copy; 2024 Your Company Name. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        function renderCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartContainer = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            cartContainer.innerHTML = '';
+            let total = 0;
+
+            if (cart.length === 0) {
+                cartContainer.innerHTML = '<p class="text-center text-muted">Your cart is empty!</p>';
+                cartTotal.textContent = '';
+            } else {
+                cart.forEach((item, index) => {
+                    total += item.price * item.quantity;
+                    const itemElement = `
+                        <div class="d-flex justify-content-between align-items-center py-3 border-bottom">
+                            <div>
+                                <h5 class="mb-1">${item.name}</h5>
+                                <p class="mb-0 text-muted">Price: $${item.price.toFixed(2)}</p>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <button class="btn btn-sm btn-outline-primary me-2" onclick="updateQuantity(${index}, -1)">-</button>
+                                <input type="number" id="quantity-${index}" value="${item.quantity}" min="1" class="form-control form-control-sm w-25 text-center" onchange="updateQuantity(${index}, parseInt(this.value) - item.quantity)">
+                                <button class="btn btn-sm btn-outline-primary ms-2" onclick="updateQuantity(${index}, 1)">+</button>
+                                <button class="btn btn-sm btn-outline-danger ms-3" onclick="removeItem(${index})">Remove</button>
+                            </div>
+                        </div>
+                    `;
+                    cartContainer.innerHTML += itemElement;
+                });
+
+                cartTotal.textContent = `Total: $${total.toFixed(2)}`;
+            }
+        }
+
+        function updateQuantity(index, delta) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const item = cart[index];
+            if (item) {
+                item.quantity += delta;
+                if (item.quantity < 1) item.quantity = 1;
+                localStorage.setItem('cart', JSON.stringify(cart));
+                renderCart();
+            }
+        }
+
+        function removeItem(index) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            renderCart();
+        }
+
+        renderCart();
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
