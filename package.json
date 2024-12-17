@@ -1,0 +1,28 @@
+{
+  "name": "entrehub",
+  "version": "1.0.0",
+  "description": "Software Engineering Project which is a webapp. This webapp is an Entrepreneurship Hub for Buyers, Sellers and Visitors within the Community of the University of the Southern Caribbean",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DareemDerrick/EntreHub.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^5.97.1",
+    "webpack-cli": "^5.1.4"
+  },
+  "bugs": {
+    "url": "https://github.com/DareemDerrick/EntreHub/issues"
+  },
+  "homepage": "src/HomePage.html",
+  "dependencies": {
+    "firebase": "^11.1.0"
+  }
+}
