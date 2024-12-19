@@ -6,10 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Services and Items</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Firebase App SDK -->
-    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js"></script>
-    <!-- Firebase Auth SDK -->
-    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js"></script>
+
 </head>
 
 <body class="bg-light text-dark d-flex flex-column min-vh-100">
@@ -28,13 +25,14 @@
                         <li class="nav-item"><a class="nav-link active">Browse</a></li>
                         <li class="nav-item"><a href="aboutUs.html" class="nav-link text-primary">About Us</a></li>
                         <li class="nav-item"><a href="shoppingCart.html" class="nav-link text-primary">Cart</a></li>
+                        <li class="nav-item"><a href="profilePage.html" class="nav-link text-primary">My Profile<li> 
                     </ul>
                 </div>
                 <!-- Conditional Login/Logout Buttons -->
                 <div class="d-flex align-items-center">
                     <span id="user-greeting" class="text-light me-3"></span>
-                    <a href="LoginPage.html" id="login-btn" class="btn btn-primary">Login</a>
-                    <button id="logout-btn" class="btn btn-danger d-none">Logout</button>
+                    <!-- Dynamic Login/Logout Button -->
+                    <div id="auth-button-container"></div>
                 </div>
             </div>
         </nav>
@@ -134,48 +132,7 @@
         fetchItems();
     </script>
 
-    <!-- Firebase Authentication -->
-    <script>
-        // Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyBJPiS0tPi38tc_zLatJF2Fcl16CGAf1Qc",
-            authDomain: "entrehub-6dcb5.firebaseapp.com",
-            projectId: "entrehub-6dcb5",
-            storageBucket: "entrehub-6dcb5.appspot.com",
-            messagingSenderId: "685069813136",
-            appId: "1:685069813136:web:afcfe0ecb6e8e86d861f15"
-        };
-
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-
-        // Authentication state listener
-        firebase.auth().onAuthStateChanged((user) => {
-            if (user) {
-                document.getElementById('user-greeting').textContent = `Welcome, ${user.email}`;
-                document.getElementById('login-btn').classList.add('d-none');
-                document.getElementById('logout-btn').classList.remove('d-none');
-            } else {
-                document.getElementById('user-greeting').textContent = '';
-                document.getElementById('login-btn').classList.remove('d-none');
-                document.getElementById('logout-btn').classList.add('d-none');
-                if (window.location.pathname !== '/LoginPage.html') {
-                    window.location.href = 'LoginPage.html'; // Redirect if not logged in
-                }
-            }
-        });
-
-        // Logout functionality
-        document.getElementById('logout-btn').addEventListener('click', () => {
-            firebase.auth().signOut().then(() => {
-                alert('Logged out successfully');
-                window.location.href = 'LoginPage.html'; // Redirect to login page
-            }).catch((error) => {
-                console.error('Logout Error:', error);
-            });
-        });
-    </script>
-
+<script src="/dist/bundle.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>

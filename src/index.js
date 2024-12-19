@@ -4,7 +4,7 @@ import {
   addDoc, deleteDoc, doc,
   query, where,
   orderBy, serverTimestamp,
-  updateDoc
+  updateDoc, getDoc, setDoc
 } from 'firebase/firestore'
 import {
   getAuth,
@@ -52,40 +52,44 @@ document.addEventListener('DOMContentLoaded', (event) => {
 document.body.addEventListener('submit', (e) => {
   if (e.target.matches('.add')){
     e.preventDefault()
-    addDoc(colRef, {
-      name: addUserForm.name.value,
-      campus: addUserForm.campus.value,
-      school: addUserForm.school.value,
-      dOfBirth: addUserForm.dOfBirth.value,
-      createdAt: serverTimestamp()
-    })
-      .then(() => {
-      addUserForm.reset()
+      const name = document.getElementById('name').value;
+      const campus = document.getElementById('campus').value;
+      const school = document.getElementById('school').value;
+      const dOfBirth = document.getElementById('dOfBirth').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      createUserWithEmailAndPassword(auth, email, password)
+      .then(cred => {
+        const user = cred.user;
+        const userData = {
+          email: email,
+          name: name  
+        };
+        console.log('user created:', cred.user)
+        localStorage.setItem('loggedInUserId', user.uid);
+        const docRef = doc(db, 'users', user.uid);
+        setDoc(docRef, userData)
+        .then(() => {
+          window.location.href = 'itemBrowser.html';
+        })
+        .catch(err => {
+          console.log(err.message)
+        });
+      })
+      .catch(err => {
+        console.log(err.message)
+        const errMsg = error.code;
+        if(errMsg == 'auth/email-already-in-use'){
+          alert('Email address already exists!')
+        } else {
+          alert('Unable to create user')
+        }
       })
     }
   })
 })
 
-// adding business docs
-document.addEventListener('DOMContentLoaded', (event) => {
-  document.body.addEventListener('submit', (e) => {
-    if (e.target.matches('.add-b')){
-      e.preventDefault()
-      addDoc(colRef, {
-        businessname: addUserForm.businessname.value,
-        name: addUserForm.name.value,
-        campus: addUserForm.campus.value,
-        school: addUserForm.school.value,
-        dOfBirth: addUserForm.dOfBirth.value,
-        email: addUserForm.email.value,
-        createdAt: serverTimestamp()
-      })
-        .then(() => {
-        addUserForm.reset()
-        })
-      }
-    })
-  })
 
 //deleting docs
 document.addEventListener('DOMContentLoaded', (event) => {
@@ -148,7 +152,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
   })
 })
 
-  // signing business users up
 document.addEventListener('DOMContentLoaded', (event) => {
   document.body.addEventListener('submit', (e) => {
     if (e.target.matches('.signup-b')){
@@ -169,34 +172,37 @@ document.addEventListener('DOMContentLoaded', (event) => {
   })
 
   // log in and out
-  document.body.addEventListener('click', (e) => { 
-    if (e.target.matches('.logout')) { 
-      signOut(auth) 
-      .then(() => { 
-        console.log('You have been signed out'); 
-      }) 
-      .catch((err) => { 
-        console.log(err.message); 
-      })
-    } 
-  })
+document.body.addEventListener('click', (e) => { 
+  if (e.target.matches('.logout')) { 
+    e.preventDefault()
+    signOut(auth) 
+    .then(() => { 
+      console.log('You have been signed out'); 
+    }) 
+    .catch((err) => { 
+      console.log(err.message); 
+    })
+  } 
+})
 
-  const loginForm = document.querySelector('.login')
-  document.body.addEventListener('submit', (e) => { 
-    if (e.target.matches('.login')) { 
-      e.preventDefault(); 
-      const email = e.target.email.value; 
-      const password = e.target.password.value; 
-      signInWithEmailAndPassword(auth, email, password) 
-      .then((cred) => { 
-        console.log('user logged in: ', cred.user); 
-        window.location.href = 'itemBrowser.html'; // Redirect to browser after login
-      }) 
-      .catch((err) => { 
-        console.log(err.message); 
-      })
-    } 
-  })
+const loginForm = document.querySelector('.login')
+document.body.addEventListener('submit', (e) => { 
+  if (e.target.matches('.login')) { 
+    e.preventDefault(); 
+    const email = e.target.email.value; 
+    const password = e.target.password.value; 
+    signInWithEmailAndPassword(auth, email, password) 
+    .then((cred) => { 
+      console.log('user logged in: ', cred.user); 
+      const user = cred.user;
+      localStorage.setItem('loggedInUserId', user.uid);
+      window.location.href = 'itemBrowser.html'; // Redirect to browser after login
+    }) 
+    .catch((err) => { 
+      console.log(err.message); 
+    })
+  } 
+})
 })
 
 // Function to render the login/logout button based on auth state
@@ -207,62 +213,56 @@ function renderAuthButton(user) {
     return
   }
   if (user) {
-      // If the user is logged in, show a Logout button
-      authButtonContainer.innerHTML = 
-        `<span class="me-3 text-light">Hello, ${user.email}</span>
-        <button class="btn btn-danger" id="logout">Logout</button>`;
-      // Add event listener for logout
-      document.getElementById('logout').addEventListener('click', () => {
-          signOut(auth).then(() => {
-              window.location.reload(); // Reload the page after logout
-              window.location.href = 'homepage.html'; // Redirect to homepage after logout
-          }).catch((error) => {
-              console.error('Logout Error:', error);
-          })
+    // If the user is logged in, show a Logout button
+    authButtonContainer.innerHTML = 
+      `<span class="me-3 text-light">Hello, ${user.email}</span>
+      <button class="btn btn-danger" id="logout">Logout</button>`;
+    // Add event listener for logout
+    document.getElementById('logout').addEventListener('click', () => {
+      signOut(auth).then(() => {
+        window.location.reload(); // Reload the page after logout
+        window.location.href = 'homepage.html'; // Redirect to homepage after logout
+      }).catch((error) => {
+        console.error('Logout Error:', error);
       })
+    })
   } else {
-      // If the user is not logged in, show a Login button
-      authButtonContainer.innerHTML = `<a href="login.html" class="btn btn-primary">Login</a>`;
+    // If the user is not logged in, show a Login button
+    authButtonContainer.innerHTML = `<a href="login.html" class="btn btn-primary">Login</a>`;
   }
-}
+}    
 
-// updating auth changes
-onAuthStateChanged(auth, (user) => {
-  console.log('user status changed: ', user)
-  renderAuthButton(user);
-})
 
-// Function to render user profile
-function renderUserProfile(user) {
-docRef.get()
-.then((doc) => {
-    if (doc.exists) {
-        const userData = doc(db, 'users');
-
-        document.getElementById('name').innerText = userData.name || 'No Name Provided';
-        document.getElementById('bio').innerText = userData.bio || 'No Bio Available';
-        document.getElementById('email').innerText = userData.email || 'No Email Provided';
-        document.getElementById('contact').innerText = userData.contact || 'No Phone Number Provided';
-        document.getElementById('campus').innerText = userData.campus || 'No Phone Campus Provided';
-        document.getElementById('school').innerText = userData.school || 'No Phone School Provided';
-        document.getElementById('linkedin').innerText = userData.linkedin || 'No LinkedIn Profile';
-        document.getElementById('linkedin').href = userData.linkedin || '#';
-    } else {
-      console.error('No such document!');
-      document.getElementById('name').innerText = 'User Not Found';
-    }
-  })
-  .catch((error) => {
-      console.error('Error fetching user data:', error);
-      document.getElementById('user-name').innerText = 'Error Loading Profile';
+document.addEventListener('DOMContentLoaded', () => {
+  onAuthStateChanged(auth, (user) => {
+    renderAuthButton(user);
   });
-}
+});
 
-// Check authentication state and render profile if the user is logged in
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    renderUserProfile(user.uid);
-  } else {
-    window.location.href = 'login.html'; // Redirect to login if not authenticated
-  }
+// Function to render user profile based on Firestore data
+// Listen for auth state changes and render the profile when authenticated
+document.addEventListener('DOMContentLoaded', () => {
+  onAuthStateChanged(auth, (user) => {
+    const loggedInUserId = localStorage.getItem('loggedInUserId');
+    if (loggedInUserId) {
+      const docRef = doc(db, "users", loggedInUserId);
+      console.log('loggedInUserId: ', loggedInUserId);
+      getDoc(docRef)
+      .then((docSnap) => {
+        if(docSnap.exists()){
+          const userData = docSnap.data();
+          document.getElementById('loggedUserName').innerText = userData.name;
+          document.getElementById('loggedUserEmail').innerText = userData.email;
+        } else {
+          // No user is signed in, redirect to login page
+          console.log("No document found matching id")
+        }
+      })
+      .catch((err) => {
+        console.log("Error getting document", err);
+      })
+    } else {
+      console.log("User id not found in local storage")
+    } 
+  });
 });

@@ -69,50 +69,46 @@
 
 <body>
 
-    <div class="signup-container">
-        <h2>Sign Up</h2>
-        <form id="signup-form" class="add">
-            <!-- Name Input -->
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" placeholder="John Doe" required>
+  <div class="signup-container">
+    <h2>Sign Up</h2>
+    <form class="add">
+        <!-- Name Input -->
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" placeholder="John Doe" required>
 
-            <!-- Email Input -->
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" placeholder="jdoe@gmail.com" required>
+        <!-- Campus Input -->
+        <label for="campus">Campus:</label>
+        <input type="text" name="campus" id="campus" placeholder="Main Campus" required>
 
-            <!-- Campus Input -->
-            <label for="campus">Campus:</label>
-            <input type="text" id="campus" name="campus" placeholder="Main Campus" required>
+        <!-- School of Study Input -->
+        <label for="school">School:</label>
+        <input type="text" name="school" id="school" placeholder="School of Business" required>
 
-            <!-- School of Study Input -->
-            <label for="school">School:</label>
-            <input type="text" id="school" name="school" placeholder="School of Business" required>
+        <!-- Contact Number Input -->
+        <label for="phone">Contact Number:</label>
+        <input type="text" name="phone" id="phone" placeholder="(123)456-7890" required>
 
-            <!-- Date of Birth Input -->
-            <label for="dOfBirth">DOB:</label>
-            <input type="date" id="DOB" name="dOfBirth" placeholder="MM-DD-YYYY" required>
+        <!-- Date of Birth Input -->
+        <label for="dOfBirth">DOB:</label>
+        <input type="date" name="dOfBirth" id="dOfBirth" placeholder="MM-DD-YYYY" required>
 
-            <!-- Password Input -->
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+        <!-- Short Bio Input -->
+        <label for="bio">About Me:</label>
+        <input type="text" name="bio" id="bio" placeholder="A short paragraph introducing yourself" required>      
 
-            <!-- Confirm Password Input -->
-            <label for="confirm_password">Confirm Password:</label>
-            <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm your password" required>
+        <!-- Email Input -->
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" required>
 
-            <!-- Submit Button -->
-            <button>add acc</button>
-        </form>
+        <!-- Password Input -->
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" required>
+        
+        <!-- Submit Button -->
+        <button>Sign Up</button>
+    </form>
 
-        <form class="delete">
-            <label for="id">Doc ID:</label>
-            <input type="text" name="id" placeholder="John Doe" required>
-
-            <button>delete acc</button>
-        </form>
-    </div>
-
-    <script src="bundle.js"></script>
+  <script src="/dist/bundle.js"></script>
 </body>
 
 </html>

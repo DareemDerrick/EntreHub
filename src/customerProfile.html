@@ -4,71 +4,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Page</title>
+    <title>User Profile</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Styling -->
     <style>
+        body {
+            background-color: #f8f9fa;
+            color: #212529;
+        }
+
+        .profile-container {
+            max-width: 600px;
+            margin: 50px auto;
+        }
+
         .profile-img {
             width: 120px;
             height: 120px;
             border: 4px solid #0d6efd;
         }
+
+        .profile-header {
+            margin-bottom: 30px;
+        }
+
+        .contact-info li {
+            margin-bottom: 10px;
+        }
+
+        .card {
+            border-radius: 10px;
+        }
     </style>
 </head>
 
-<body class="bg-light text-dark">
+<body>
 
     <!-- Profile Container -->
-    <div class="container mt-5">
-        <div class="card shadow-lg rounded-3 mx-auto" style="max-width: 600px;">
-            <!-- Card Body -->
+    <div class="container profile-container">
+        <div class="card shadow-lg">
             <div class="card-body text-center">
                 <!-- Profile Header -->
                 <img src="https://via.placeholder.com/120" alt="Profile Picture" class="rounded-circle profile-img mb-3">
-                <h1 class="card-title h3 mb-2">John Doe</h1>
-                <p class="text-muted">Web Developer | Tech Enthusiast | Coffee Lover</p>
+                <h1 class="card-title h3 mb-2">Name: <span id="loggedUserName"></span></h1>
+                <h2 class="card-title h3 mb-2">Campus: <span id="loggedUserCampus"></span></h2>
+                <h2 class="card-title h3 mb-2">School: <span id="loggedUserSchool"></span></h2>
+                <p class="text-muted">Bio: <span id="loggedUserBio"></span></p>
 
                 <!-- Contact Information -->
                 <div class="mt-4">
                     <h2 class="h5 text-primary border-bottom pb-2 d-inline-block">Contact Information</h2>
-                    <ul class="list-unstyled mt-3">
-                        <li class="mb-2">
+                    <ul class="list-unstyled contact-info mt-3">
+                        <li>
                             <strong>Email:</strong>
-                            <a href="mailto:johndoe@example.com" class="text-decoration-none text-primary">
-                                johndoe@example.com
-                            </a>
+                            <span id="loggedUserEmail">Loading...</span>
                         </li>
-                        <li class="mb-2">
+                        <li>
                             <strong>Phone:</strong>
-                            <span>(123) 456-7890</span>
+                            <span id="loggedUserPhone">Loading...</span>
                         </li>
                         <li>
                             <strong>LinkedIn:</strong>
-                            <a href="https://www.linkedin.com/in/johndoe" target="_blank"
-                                class="text-decoration-none text-primary">
-                                linkedin.com/in/johndoe
-                            </a>
+                            <a href="#" id="loggedUserLinkedin" target="_blank" class="text-decoration-none text-primary">Loading...</a>
                         </li>
                     </ul>
-                </div>
-
-                <!-- Delete Profile Form -->
-                <div class="mt-4">
-                    <form class="d-flex flex-column align-items-center" id="deleteForm">
-                        <div class="mb-3 w-75">
-                            <label for="id" class="form-label">Document ID:</label>
-                            <input type="text" id="id" name="id" class="form-control" placeholder="Enter Document ID"
-                                required>
-                        </div>
-                        <button type="submit" class="btn btn-danger w-50">Delete Profile</button>
-                    </form>
                 </div>
             </div>
         </div>
     </div>
 
+    <script src="/dist/bundle.js"></script>
     <!-- Bootstrap Bundle with Popper.js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
 
+</body>
 </html>

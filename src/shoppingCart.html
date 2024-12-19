@@ -12,29 +12,32 @@
 </head>
 <body class="bg-light text-dark d-flex flex-column min-vh-100">
 
-    <!-- Header -->
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container-fluid px-5">
-                <a class="navbar-brand" href="#">
-                    <img src="/img/uscHUBLogo.png" alt="Logo" class="rounded" style="height: 50px;">
-                </a>
-                <h1 class="navbar-text text-white">Shopping Cart</h1>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link text-primary" href="homepage.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link text-primary" href="itemBrowserpg.html">Browse</a></li>
-                        <li class="nav-item"><a class="nav-link text-primary" href="aboutUs.html">About Us</a></li>
-                        <li class="nav-item"><a class="nav-link active text-primary" href="#">Cart</a></li>
-                    </ul>
-                    <a href="login.html" class="btn btn-primary ms-3">Login</a>
-                </div>
+ <!-- Header -->
+ <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3 shadow">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="/img/uscHUBLogo.png" alt="Logo" class="rounded me-3" style="width: 50px;">
+                <span>Item Browse</span>
+            </a>
+            <div class="collapse navbar-collapse justify-content-center">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a href="homepage.html" class="nav-link text-primary">Home</a></li>
+                    <li class="nav-item"><a href="itemBrowser.html" class="nav-link text-primary">Browse</a></li>
+                    <li class="nav-item"><a href="aboutUs.html" class="nav-link text-primary">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link active">Cart</a></li>
+                    <li class="nav-item"><a href="profilePage.html" class="nav-link text-primary">My Profile<li> 
+                </ul>
             </div>
-        </nav>
-    </header>
+            <!-- Conditional Login/Logout Buttons -->
+            <div class="d-flex align-items-center">
+                <span id="user-greeting" class="text-light me-3"></span>
+                <!-- Dynamic Login/Logout Button -->
+                <div id="auth-button-container"></div>
+            </div>
+        </div>
+    </nav>
+</header>
 
     <!-- Main Content -->
     <main class="container my-5">
