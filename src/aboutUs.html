@@ -33,10 +33,12 @@
                     <a href="shoppingCart.html" class="hover:text-blue-500 hover:scale-110 text-blue-400 font-fOne">Cart</a>
                     <a class="nav-item"><a href="profilePage.html" class="nav-link text-primary">My Profile</a> 
                 </div>
-            <!-- reservation button -->
-            <a href="login.html" class="relative transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 top-5 right-20 md:block p-3 px-6 pt-2 font-fOne text-white bg-blue-400 rounded-full baseline hover:bg-blue-600">
-            Login
-            </a>
+            <!-- Conditional Login/Logout Buttons -->
+            <div class="d-flex align-items-center">
+                <span id="user-greeting" class="text-light me-3"></span>
+                <!-- Dynamic Login/Logout Button -->
+                <div id="auth-button-container" class="dynamicLogin"></div>
+            </div>
             </div>
           </div>
         </nav>
