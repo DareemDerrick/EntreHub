@@ -58,13 +58,21 @@ document.body.addEventListener('submit', (e) => {
       const dOfBirth = document.getElementById('dOfBirth').value;
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
+      const phone = document.getElementById('phone').value;
+      const bio = document.getElementById('bio').value;
 
       createUserWithEmailAndPassword(auth, email, password)
       .then(cred => {
         const user = cred.user;
         const userData = {
           email: email,
-          name: name  
+          campus: campus,
+          school: school,
+          dOfBirth: dOfBirth,
+          name: name,
+          password: password,
+          phone: phone,
+          bio: bio
         };
         console.log('user created:', cred.user)
         localStorage.setItem('loggedInUserId', user.uid);
@@ -97,12 +105,19 @@ document.body.addEventListener('submit', (e) => {
   if (e.target.matches('.delete')){
     e.preventDefault()
 
-    const docRef = doc(db, 'users', deleteUserForm.id.value)
-  
-    deleteDoc(docRef)
-      .then(() => {
-        deleteUserForm.reset()
-      })
+    const loggedInUserId = localStorage.getItem('loggedInUserId');
+    if (loggedInUserId){
+      console.log('loggedInUserId: ', loggedInUserId);
+
+      const docRef = doc(db, 'users', loggedInUserId)
+    
+      getDoc(docRef)
+      deleteDoc(docRef)
+        .then(() => {
+          console.log('Account Deleted');
+          window.location.href = 'itemBrowser.html';
+        })
+    }
     }
   })
 })
@@ -253,6 +268,10 @@ document.addEventListener('DOMContentLoaded', () => {
           const userData = docSnap.data();
           document.getElementById('loggedUserName').innerText = userData.name;
           document.getElementById('loggedUserEmail').innerText = userData.email;
+          document.getElementById('loggedUserBio').innerText = userData.bio;
+          document.getElementById('loggedUserCampus').innerText = userData.campus;
+          document.getElementById('loggedUserSchool').innerText = userData.school;
+          document.getElementById('loggedUserPhone').innerText = userData.phone;
         } else {
           // No user is signed in, redirect to login page
           console.log("No document found matching id")
