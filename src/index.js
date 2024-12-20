@@ -53,6 +53,7 @@ document.body.addEventListener('submit', (e) => {
   if (e.target.matches('.add')){
     e.preventDefault()
       const name = document.getElementById('name').value;
+      //const businessName = document.getElementById('businessName').value;
       const campus = document.getElementById('campus').value;
       const school = document.getElementById('school').value;
       const dOfBirth = document.getElementById('dOfBirth').value;
@@ -70,6 +71,7 @@ document.body.addEventListener('submit', (e) => {
           school: school,
           dOfBirth: dOfBirth,
           name: name,
+          //businessName: businessName,
           password: password,
           phone: phone,
           bio: bio
@@ -236,14 +238,14 @@ function renderAuthButton(user) {
     document.getElementById('logout').addEventListener('click', () => {
       signOut(auth).then(() => {
         window.location.reload(); // Reload the page after logout
-        window.location.href = 'homepage.html'; // Redirect to homepage after logout
+        window.location.href = 'itemBrowser.html'; // Redirect to homepage after logout
       }).catch((error) => {
         console.error('Logout Error:', error);
       })
     })
   } else {
     // If the user is not logged in, show a Login button
-    authButtonContainer.innerHTML = `<a href="login.html" class="btn btn-primary">Login</a>`;
+    authButtonContainer.innerHTML = `<a href="LoginPage.html" class="btn btn-primary">Login</a>`;
   }
 }    
 
@@ -254,7 +256,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Function to render user profile based on Firestore data
 // Listen for auth state changes and render the profile when authenticated
 document.addEventListener('DOMContentLoaded', () => {
   onAuthStateChanged(auth, (user) => {

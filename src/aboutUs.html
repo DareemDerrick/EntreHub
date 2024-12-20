@@ -1,103 +1,138 @@
 <!doctype html>
-<html>
+<html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="./output.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fauna+One:400">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400">
-  <script src="https://cdn.tailwindcss.com"></script>
   <title>USC HUB</title>
+
+  <style>
+    body {
+      background-color: #f8f9fa;
+      color: #343a40;
+    }
+
+    .navbar-brand img {
+      width: 100px;
+      border-radius: 0.25rem;
+    }
+
+    .team-member img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+    }
+
+    .gradient-bg {
+      background: linear-gradient(to top right, #000, #6c757d);
+    }
+  </style>
 </head>
 
-<body class="bg-gray-100 text-gray-800">
-    <!-- Header -->
-    <header>
-        <nav>
-          <div class="bg-gradient-to-tr from-black to-gray-600 w-full relative">
-              
-            <div class="flex items-center justify-between p-5">
-            
-                <div class="flex w-1/4">
-                    <img class="md:w-1/2 rounded-md" src="/img/uscHUBLogo.png" alt="img">
-                </div>
+<body>
 
-                <div class=""><h1 class="text-center text-white text-2xl font-bold">About Us</h1></div>
-                
-                <div class="left-1/2 sm:flex space-x-7">
-                    <!-- Links -->
-                    <a href= "homepage.html" class="hover:text-blue-500 hover:scale-110 text-blue-400 font-fOne">Home</a>
-                    <a href="itemBrowserpg.html" class="hover:text-blue-500 hover:scale-110 text-blue-400 font-fOne">Browse</a>
-                    <a class="text-blue-500 font-fOne">About Us</a>
-                    <a href="shoppingCart.html" class="hover:text-blue-500 hover:scale-110 text-blue-400 font-fOne">Cart</a>
-                    <a class="nav-item"><a href="profilePage.html" class="nav-link text-primary">My Profile</a> 
-                </div>
-            <!-- Conditional Login/Logout Buttons -->
-            <div class="d-flex align-items-center">
-                <span id="user-greeting" class="text-light me-3"></span>
-                <!-- Dynamic Login/Logout Button -->
-                <div id="auth-button-container" class="dynamicLogin"></div>
-            </div>
-            </div>
-          </div>
-        </nav>
-      </header>
+  <!-- Header -->
+  <header>
+    <nav class="navbar navbar-expand-lg gradient-bg py-3">
+      <div class="container d-flex justify-content-between align-items-center">
+        
+        <!-- Logo -->
+        <a class="navbar-brand" href="homepage.html">
+          <img src="https://via.placeholder.com/150" alt="USC HUB Logo">
+        </a>
 
-    <!-- Company Description -->
-    <section class="container mx-auto my-10 p-6 bg-white rounded-lg shadow-lg">
-        <h2 class="text-2xl font-bold mb-4 text-blue-500">Our Story</h2>
-        <p class="text-lg">
-            Welcome to our company! We are dedicated to providing exceptional services and innovative solutions to our customers. 
-            Our mission is to create value and build lasting relationships through excellence and integrity. 
-            With a passionate team and years of expertise, we aim to exceed your expectations and deliver results that matter.
-        </p>
-    </section>
+        <!-- Title -->
+        <h1 class="text-white fs-2 fw-bold mb-0">About Us</h1>
 
-    <!-- Team Section -->
-    <section class="container mx-auto my-10 p-6 bg-white rounded-lg shadow-lg">
-        <h2 class="text-2xl font-bold mb-6 text-blue-500 text-center">Meet Our Team</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- CEO -->
-            <div class="bg-gray-100 p-4 rounded-lg shadow-md text-center">
-                <img src="https://via.placeholder.com/150" alt="CEO" class="w-32 h-32 mx-auto rounded-full mb-4">
-                <h3 class="text-xl font-bold">Dareem Derrick</h3>
-                <p class="text-gray-600">Chief Executive Officer</p>
-                <p class="mt-2 text-sm">
-                    Dareem leads the company with vision and strategy, ensuring we stay ahead in the industry.
-                </p>
-            </div>
-            <!-- Manager -->
-            <div class="bg-gray-100 p-4 rounded-lg shadow-md text-center">
-                <img src="https://via.placeholder.com/150" alt="Manager" class="w-32 h-32 mx-auto rounded-full mb-4">
-                <h3 class="text-xl font-bold">Jounathan Peters</h3>
-                <p class="text-gray-600">Operations Manager</p>
-                <p class="mt-2 text-sm">
-                    Jounathan oversees daily operations and ensures everything runs smoothly for our customers and team.
-                </p>
-            </div>
-            <!-- Social Media Manager -->
-            <div class="bg-gray-100 p-4 rounded-lg shadow-md text-center">
-                <img src="https://via.placeholder.com/150" alt="Social Media Manager" class="w-32 h-32 mx-auto rounded-full mb-4">
-                <h3 class="text-xl font-bold">Jeff Bezos</h3>
-                <p class="text-gray-600">Social Media Manager</p>
-                <p class="mt-2 text-sm">
-                    Jeff connects with our audience and shares our story through engaging and creative content.
-                </p>
-            </div>
-        </div>
-    </section>
-
-   <!-- Footer -->
-   <footer class="bg-gray-800 text-white py-4 mt-auto">
-    <div class="container mx-auto flex justify-around">
         <!-- Links -->
-        <a href= "homepage.html" class="hover:text-blue-500 hover:scale-110 text-blue-400 font-fOne">Home</a>
-        <a href="itemBrowserpg.html" class="hover:text-blue-500 hover:scale-110 text-blue-400 font-fOne">Browse</a>
-        <a class="text-blue-500 font-fOne">About Us</a>
-        <a href="shoppingCart.html" class="hover:text-blue-500 hover:scale-110 text-blue-400 font-fOne">Cart</a>
+        <div>
+          <a href="homepage.html" class="text-decoration-none text-primary me-3">Home</a>
+          <a href="itemBrowser.html" class="text-decoration-none text-primary me-3">Browse</a>
+          <span class="text-light me-3">About Us</span>
+          <a href="shoppingCart.html" class="text-decoration-none text-primary me-3">Cart</a>
+          <a href="profilePage.html" class="text-decoration-none text-primary">My Profile</a>
+        </div>
+
+        <!-- Conditional Login/Logout Buttons -->
+        <div class="d-flex align-items-center">
+            <span id="user-greeting" class="text-light me-3"></span>
+            <!-- Dynamic Login/Logout Button -->
+            <div id="auth-button-container"></div>
+        </div>
+
+      </div>
+    </nav>
+  </header>
+
+  <!-- Company Description -->
+  <section class="container my-5 p-4 bg-white rounded shadow">
+    <h2 class="text-primary fw-bold mb-4">Our Story</h2>
+    <p class="fs-5">
+      Welcome to our company! We are dedicated to providing exceptional services and innovative solutions to our customers. 
+      Our mission is to create value and build lasting relationships through excellence and integrity. 
+      With a passionate team and years of expertise, we aim to exceed your expectations and deliver results that matter.
+    </p>
+  </section>
+
+  <!-- Team Section -->
+  <section class="container my-5 p-4 bg-white rounded shadow">
+    <h2 class="text-primary fw-bold text-center mb-4">Meet Our Team</h2>
+    <div class="row g-4 text-center">
+      
+      <!-- CEO -->
+      <div class="col-md-4">
+        <div class="team-member bg-light p-4 rounded shadow">
+          <img src="https://via.placeholder.com/150" alt="CEO">
+          <h3 class="h5 fw-bold">Dareem Derrick</h3>
+          <p class="text-muted">Chief Executive Officer</p>
+          <p class="small">Dareem leads the company with vision and strategy, ensuring we stay ahead in the industry.</p>
+        </div>
+      </div>
+
+      <!-- Manager -->
+      <div class="col-md-4">
+        <div class="team-member bg-light p-4 rounded shadow">
+          <img src="https://via.placeholder.com/150" alt="Manager">
+          <h3 class="h5 fw-bold">Jounathan Peters</h3>
+          <p class="text-muted">Operations Manager</p>
+          <p class="small">Jounathan oversees daily operations and ensures everything runs smoothly for our customers and team.</p>
+        </div>
+      </div>
+
+      <!-- Social Media Manager -->
+      <div class="col-md-4">
+        <div class="team-member bg-light p-4 rounded shadow">
+          <img src="https://via.placeholder.com/150" alt="Social Media Manager">
+          <h3 class="h5 fw-bold">Jeff Bezos</h3>
+          <p class="text-muted">Social Media Manager</p>
+          <p class="small">Jeff connects with our audience and shares our story through engaging and creative content.</p>
+        </div>
+      </div>
+
     </div>
-    <p class="text-center text-sm mt-2">&copy; 2024 Your Company Name. All rights reserved.</p>
-    </footer>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-4 mt-auto">
+    <div class="container text-center">
+      <a href="homepage.html" class="text-decoration-none text-primary me-3">Home</a>
+      <a href="itemBrowserpg.html" class="text-decoration-none text-primary me-3">Browse</a>
+      <span class="text-primary me-3">About Us</span>
+      <a href="shoppingCart.html" class="text-decoration-none text-primary">Cart</a>
+    </div>
+    <p class="text-center text-muted mt-2">&copy; 2024 Your Company Name. All rights reserved.</p>
+  </footer>
+
+  <script src="/dist/bundle.js"></script>
+
+  <!-- Bootstrap JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-pp2J3fyhLQAvU53UO3bMC6UGEvKigY59YNW6ixXwb2Pm5y52OqDC5H4Jbl2L9bR6" crossorigin="anonymous"></script>
+
 </body>
+
 </html>

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,7 +13,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
         }
 
@@ -21,7 +22,9 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
+            width: 100%;
+            max-width: 400px;
+            margin-top: 20px; 
         }
 
         h2 {
@@ -40,7 +43,17 @@
             border-radius: 4px;
             box-sizing: border-box;
         }
-
+        .custom-box {
+            width: 300px; 
+            max-width: 100%;
+            height: 200px;
+            max-height: 100%; 
+            white-space: normal;    
+            padding: 10px;        
+            border: 1px solid #ccc; 
+            overflow: auto;        
+            word-wrap: break-word; 
+        }
         input[type="submit"] {
             width: 100%;
             background-color: #4CAF50;
@@ -54,7 +67,19 @@
         input[type="submit"]:hover {
             background-color: #45a049;
         }
-
+        button {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
         .error-message {
             color: red;
             text-align: center;
@@ -69,46 +94,46 @@
 
 <body>
 
-  <div class="signup-container">
-    <h2>Sign Up</h2>
-    <form class="add">
-        <!-- Name Input -->
-        <label for="name">Name:</label>
-        <input type="text" name="name" id="name" placeholder="John Doe" required>
+    <div class="signup-container">
+        <h2>Sign Up</h2>
+        <form class="add">
+            <!-- Name Input -->
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" placeholder="John Doe" required>
 
-        <!-- Campus Input -->
-        <label for="campus">Campus:</label>
-        <input type="text" name="campus" id="campus" placeholder="Main Campus" required>
+            <!-- Campus Input -->
+            <label for="campus">Campus:</label>
+            <input type="text" name="campus" id="campus" placeholder="Main Campus" required>
 
-        <!-- School of Study Input -->
-        <label for="school">School:</label>
-        <input type="text" name="school" id="school" placeholder="School of Business" required>
+            <!-- School of Study Input -->
+            <label for="school">School:</label>
+            <input type="text" name="school" id="school" placeholder="School of Business" required>
 
-        <!-- Contact Number Input -->
-        <label for="phone">Contact Number:</label>
-        <input type="text" name="phone" id="phone" placeholder="(123)456-7890" required>
+            <!-- Contact Number Input -->
+            <label for="phone">Contact Number:</label>
+            <input type="text" name="phone" id="phone" placeholder="(123) 456-7890" required>
 
-        <!-- Date of Birth Input -->
-        <label for="dOfBirth">DOB:</label>
-        <input type="date" name="dOfBirth" id="dOfBirth" placeholder="MM-DD-YYYY" required>
+            <!-- Date of Birth Input -->
+            <label for="dOfBirth">DOB:</label>
+            <input type="date" name="dOfBirth" id="dOfBirth" required>
 
-        <!-- Short Bio Input -->
-        <label for="bio">About Me:</label>
-        <input type="text" name="bio" id="bio" placeholder="A short paragraph introducing yourself" required>      
+            <!-- Short Description Input -->
+            <label for="bio">About You:</label>
+            <textarea class="form-control custom-box" rows="4" name="bio" id="bio" placeholder="A short paragraph introducing yourself" required></textarea>     
 
-        <!-- Email Input -->
-        <label for="email">Email:</label>
-        <input type="email" name="email" id="email" required>
+            <!-- Email Input -->
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" required>
 
-        <!-- Password Input -->
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password" required>
-        
-        <!-- Submit Button -->
-        <button>Sign Up</button>
-    </form>
-
+            <!-- Password Input -->
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" required>
+            
+            <!-- Submit Button -->
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
   <script src="/dist/bundle.js"></script>
-</body>
 
+</body>
 </html>
